@@ -18,8 +18,10 @@ with open(input_filename) as country_file:
         }
         # print(country_dict)
         countries[country.casefold()] = country_dict
+        # code_lookup[code.casefold()] = country
+        countries[code.casefold()] = country_dict
 
-# print(countries)
+print(countries)
 
 while True:
     chosen_country = input('Please enter the name of a country: ')
@@ -29,6 +31,3 @@ while True:
         print(f"The capital of {chosen_country} is {country_data['capital']}")
     elif chosen_country == 'quit':
         break
-    else:
-        print(f"The name of the country choosen does not exists: {chosen_country}")
-        
