@@ -7,4 +7,5 @@ with open(csv_filename, encoding='utf-8', newline='') as csv_file:
     print(f'Column headers: {headers}')
     reader = csv.reader(csv_file)
     for row in reader:
+        # rank, country, gold, silver, bronze, total = row
         print(row)
