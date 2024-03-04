@@ -48,7 +48,8 @@ def next_invoice_number(invoice_number: str) -> str:
 
 def record_invoice(invoice_file: TextIO,
                    company: str,
-                   amount: float) -> int:
+                   amount: float,
+                   last_line_ptr: int = 0) -> int:
     """Create a new invoice number, and write it to a file on disk.
 
     :param invoice_file: An open text file, opened using r+.
@@ -60,7 +61,6 @@ def record_invoice(invoice_file: TextIO,
     :return: The position of the start of the last line in the file.
         This can be used in subsequent calls to `record_invoice`.
     """
-    last_line_ptr = 0
     invoice_file.seek(last_line_ptr, SEEK_SET)
     last_row = ''
     for line in invoice_file:
@@ -84,8 +84,8 @@ def record_invoice(invoice_file: TextIO,
 data_file = 'invoices.csv'
 
 with open(data_file, 'r+', encoding='utf-8') as invoices:
-    record_invoice(invoices, 'ACME Roadrunner', 18.40)
-    record_invoice(invoices, 'Squirrel Storage', 320.55)
+   last_line =  record_invoice(invoices, 'ACME Roadrunner', 18.41)
+   last_line = record_invoice(invoices, 'Squirrel Storage', 320.56, last_line )
 
 # Test code:
 # current_year = get_year()
